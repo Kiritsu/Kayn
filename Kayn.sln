@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayn", "src\Kayn\Kayn.csproj", "{6B79D897-AA29-42AE-ABF9-A371A8B50942}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayn.Core", "src\Kayn.Core\Kayn.Core.csproj", "{0F6F0C53-A729-44A9-82D8-715CA67BC975}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B79D897-AA29-42AE-ABF9-A371A8B50942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B79D897-AA29-42AE-ABF9-A371A8B50942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B79D897-AA29-42AE-ABF9-A371A8B50942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B79D897-AA29-42AE-ABF9-A371A8B50942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F6F0C53-A729-44A9-82D8-715CA67BC975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6F0C53-A729-44A9-82D8-715CA67BC975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6F0C53-A729-44A9-82D8-715CA67BC975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6F0C53-A729-44A9-82D8-715CA67BC975}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
