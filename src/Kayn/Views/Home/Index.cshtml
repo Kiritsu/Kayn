@@ -1,8 +1,25 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     ViewData["Title"] = "Home Page";
+
+    var identity = User.Identity as ClaimsIdentity;
+    var isAuth = identity?.IsAuthenticated;
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @if (!isAuth.HasValue || !isAuth.Value)
+    {
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    }
+    else
+    {
+        var username = identity.Name;
+        var discriminator = identity.FindFirst("urn:discord:user:discriminator")!.Value;
+        var avatarUrl = identity.FindFirst("urn:discord:avatar:url")!.Value;
+        
+        <img src="@avatarUrl" alt="discord_img"/>
+        <p>Hey @username#@discriminator :)</p>
+    }
 </div>

@@ -9,7 +9,7 @@ using Kayn.Models;
 
 namespace Kayn.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : KaynController
     {
         private readonly ILogger<HomeController> _logger;
 

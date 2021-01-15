@@ -8,4 +8,8 @@
       <ProjectReference Include="..\Kayn.Core\Kayn.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AspNet.Security.OAuth.Discord" Version="5.0.0" />
+    </ItemGroup>
+
 </Project>
