@@ -7,5 +7,6 @@ namespace Kayn.Configurations
         public string Token { get; init; }
         public string Game { get; init; }
         public string Prefix { get; init; } = "!";
+        public string ClientId { get; init; }
     }
 }

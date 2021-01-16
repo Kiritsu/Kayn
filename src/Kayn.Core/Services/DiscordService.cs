@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace Kayn.Core.Services
         private readonly ILogger<DiscordService> _logger;
         private readonly IDiscordConfiguration _configuration;
 
+        private readonly string[] _prefixes;
+
         public DiscordService(IServiceProvider services, ICommandService commands, DiscordClient client, 
             ILogger<DiscordService> logger, IDiscordConfiguration configuration)
         {
@@ -29,6 +32,13 @@ namespace Kayn.Core.Services
             _client = client;
             _logger = logger;
             _configuration = configuration;
+
+            _prefixes = new[]
+            {
+                _configuration.Prefix,
+                $"<@{_configuration.ClientId}>",
+                $"<@!{_configuration.ClientId}>"
+            };
             
             _commands.AddModules(Assembly.GetExecutingAssembly());
             
@@ -65,13 +75,14 @@ namespace Kayn.Core.Services
             {
                 return;
             }
-            
-            if (!CommandUtilities.HasPrefix(e.Message.Content, _configuration.Prefix, out var input))
+
+            if (!CommandUtilities.HasAnyPrefix(e.Message.Content, _prefixes, StringComparison.OrdinalIgnoreCase, 
+                out var prefix, out var input))
             {
                 return;
             }
 
-            var context = new DiscordCommandContext(sender, e, _services);
+            var context = new DiscordCommandContext(sender, e, prefix, _services);
             var result = await _commands.ExecuteAsync(input, context);
             if (result.IsSuccessful)
             {
@@ -79,8 +90,8 @@ namespace Kayn.Core.Services
             }
 
             _logger.LogWarning("Command result doesn't indicate a success." +
-                               $"\n\tContext: {context.Guild.Id} {context.Channel.Id}" +
-                               $"\n\tInput: <{context.User.GetFullName()}> {e.Message.Content}" +
+                               $"\n\tContext: {context.Guild.Id} {context.Channel.Id} {context.User.Id} {context.Message.Id}" +
+                               $"\n\tInput: <{context.User.GetFullName()}>: {e.Message.Content}" +
                                $"\n\tResult: {result}");
         }
 

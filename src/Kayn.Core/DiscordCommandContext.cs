@@ -16,9 +16,10 @@ namespace Kayn.Core
         public DiscordMember Member { get; }
         public DiscordUser User { get; }
         public DiscordMessage Message { get; }
+        public string Prefix { get; }
         
-        public DiscordCommandContext(DiscordClient c, MessageCreateEventArgs e, IServiceProvider serviceProvider) 
-            : base(serviceProvider)
+        public DiscordCommandContext(DiscordClient c, MessageCreateEventArgs e, string prefix, 
+            IServiceProvider serviceProvider) : base(serviceProvider)
         {
             Client = c;
             Guild = e.Guild;
@@ -27,10 +28,11 @@ namespace Kayn.Core
             Member = e.Author as DiscordMember;
             User = e.Author;
             Message = e.Message;
+            Prefix = prefix;
         }
         
-        public DiscordCommandContext(DiscordClient c, MessageUpdateEventArgs e, IServiceProvider serviceProvider) 
-            : base(serviceProvider)
+        public DiscordCommandContext(DiscordClient c, MessageUpdateEventArgs e, string prefix,
+            IServiceProvider serviceProvider) : base(serviceProvider)
         {
             Client = c;
             Guild = e.Guild;
@@ -39,6 +41,7 @@ namespace Kayn.Core
             Member = e.Author as DiscordMember;
             User = e.Author;
             Message = e.Message;
+            Prefix = prefix;
         }
     }
 }
