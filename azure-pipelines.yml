@@ -1,0 +1,27 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Install NuGet'
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.x'
+  displayName: 'Install .NET 5'
+
+- script: dotnet restore
+  condition: succeeded()
+  displayName: 'Restore Solution'
+
+- script: dotnet build --configuration $(buildConfiguration) --verbosity minimal
+  condition: succeeded()
+  displayName: 'Build Solution'
