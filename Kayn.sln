@@ -4,6 +4,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayn", "src\Kayn\Kayn.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayn.Core", "src\Kayn.Core\Kayn.Core.csproj", "{0F6F0C53-A729-44A9-82D8-715CA67BC975}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "executables", "executables", "{63F26EAC-F427-4A84-B108-E9F87AF60676}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{15971ECA-ACCC-497D-8474-34DC37C8EEA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayn.Data", "src\Kayn.Data\Kayn.Data.csproj", "{5EAEA721-A418-471B-9D55-CCBEF5873464}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +24,14 @@ Global
 		{0F6F0C53-A729-44A9-82D8-715CA67BC975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F6F0C53-A729-44A9-82D8-715CA67BC975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F6F0C53-A729-44A9-82D8-715CA67BC975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EAEA721-A418-471B-9D55-CCBEF5873464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EAEA721-A418-471B-9D55-CCBEF5873464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EAEA721-A418-471B-9D55-CCBEF5873464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EAEA721-A418-471B-9D55-CCBEF5873464}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B79D897-AA29-42AE-ABF9-A371A8B50942} = {63F26EAC-F427-4A84-B108-E9F87AF60676}
+		{0F6F0C53-A729-44A9-82D8-715CA67BC975} = {15971ECA-ACCC-497D-8474-34DC37C8EEA1}
+		{5EAEA721-A418-471B-9D55-CCBEF5873464} = {15971ECA-ACCC-497D-8474-34DC37C8EEA1}
 	EndGlobalSection
 EndGlobal

@@ -29,6 +29,14 @@ You can publish the app with: `dotnet publish --framework net5.0 --configuration
 		"Prefix": "!",
 		"ClientId": "client_id",
 		"ClientSecret": "client_secret"
+	},
+	"Database" : {
+		"Provider": "Postgresql",
+		"Hostname": "localhost",
+		"Database": "kayn",
+		"Port": 5432,
+		"Username": "kayn",
+		"Password": "p4$$vv0rd"
 	}
 }
 ```

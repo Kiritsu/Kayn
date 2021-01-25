@@ -18,4 +18,8 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Kayn.Data\Kayn.Data.csproj" />
+    </ItemGroup>
+
 </Project>

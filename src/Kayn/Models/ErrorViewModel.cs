@@ -1,5 +1,3 @@
-using System;
-
 namespace Kayn.Models
 {
     public class ErrorViewModel
