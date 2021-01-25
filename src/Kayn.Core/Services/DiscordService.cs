@@ -23,7 +23,7 @@ namespace Kayn.Core.Services
 
         private readonly string[] _prefixes;
 
-        public DiscordService(IServiceProvider services, ICommandService commands, DiscordClient client, 
+        public DiscordService(IServiceProvider services, ICommandService commands, DiscordClient client,
             ILogger<DiscordService> logger, IDiscordConfiguration configuration)
         {
             _services = services;
@@ -38,9 +38,9 @@ namespace Kayn.Core.Services
                 $"<@{_configuration.ClientId}>",
                 $"<@!{_configuration.ClientId}>"
             };
-            
+
             _commands.AddModules(Assembly.GetExecutingAssembly());
-            
+
             _client.Ready += ClientOnReady;
             _client.MessageCreated += ClientOnMessageCreated;
         }
@@ -50,14 +50,14 @@ namespace Kayn.Core.Services
             await _client.ConnectAsync(
                 new DiscordActivity(_configuration.Game, ActivityType.Watching),
                 UserStatus.DoNotDisturb).ConfigureAwait(false);
-            
+
             _logger.LogInformation("Connecting to the discord gateway.");
         }
-        
+
         public async Task StopAsync(CancellationToken cancellationToken)
         {
             await _client.DisconnectAsync().ConfigureAwait(false);
-            
+
             _logger.LogInformation("Disconnecting from discord gateway.");
         }
 
@@ -67,7 +67,7 @@ namespace Kayn.Core.Services
 
             return Task.CompletedTask;
         }
-        
+
         private async Task ClientOnMessageCreated(DiscordClient sender, MessageCreateEventArgs e)
         {
             if (e.Author.IsBot)
@@ -75,7 +75,7 @@ namespace Kayn.Core.Services
                 return;
             }
 
-            if (!CommandUtilities.HasAnyPrefix(e.Message.Content, _prefixes, StringComparison.OrdinalIgnoreCase, 
+            if (!CommandUtilities.HasAnyPrefix(e.Message.Content, _prefixes, StringComparison.OrdinalIgnoreCase,
                 out var prefix, out var input))
             {
                 return;
@@ -89,9 +89,12 @@ namespace Kayn.Core.Services
             }
 
             _logger.LogWarning("Command result doesn't indicate a success." +
-                               $"\n\tContext: {context.Guild.Id} {context.Channel.Id} {context.User.Id} {context.Message.Id}" +
-                               $"\n\tInput: <{context.User.GetFullName()}>: {e.Message.Content}" +
-                               $"\n\tResult: {result}");
+                               "\n\tContext: {0} {1} {2} {3}" +
+                               "\n\tInput: <{4}>: {5}" +
+                               "\n\tResult: {6}",
+                context.Guild.Id, context.Channel.Id, context.User.Id, context.Message.Id,
+                context.User.GetFullName(), e.Message.Content,
+                result);
         }
 
         public void Dispose()
